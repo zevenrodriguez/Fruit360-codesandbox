@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>360 Image Viewer</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@5/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-layout-component@5.3.0/dist/aframe-layout-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@3.2.1/dist/aframe-template-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-proxy-event-component@2.1.0/dist/aframe-proxy-event-component.min.js"></script>
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js "></script>
+    <!-- https://github.com/rdub80/aframe-gui -->
+     <!-- Image link template to be reused. -->
+     <script src="code.js" ></script>
+    
+
+    <style>
+     
+    </style>
+  </head>
+  <body>
+    <a-scene inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
+      <a-assets>
+        <img
+          id="rooftop"
+          src="images/center.jpg"
+        />
+
+        <img
+          id="icon"
+          src="images/icon.png"
+        />
+
+        <img
+          id="weather"
+          src="images/cloud.png"
+        />
+
+        <img
+          id="water"
+          src="images/water.jpg"
+        />
+
+      </a-assets>
+
+          
+      <a-sky id="image-360" radius="20" rotation="0 0 0" src="#rooftop"></a-sky>
+
+      <!-- Camera + cursor. -->
+		  <a-entity id="cameraRig" position="0 0 0" rotation="0 0 0" >
+			<a-camera look-controls wasd-controls position="0 0 0" rotation="0 0 0">
+				<a-gui-cursor id="cursor" raycaster="objects: [gui-interactable]"  fduse-timeout="2000" design="ring"></a-gui-cursor> 
+        <!-- <a-cursor></a-cursor> -->
+        
+
+          <a-gui-flex-container
+          class="showpanel"
+          visible="false"
+          position="0 0 -3" 
+          flex-direction="column" 
+          justify-content="center" 
+          align-items="normal" 
+          component-padding="0.1"  
+          opacity="0.5"
+          background-color="black"
+          width="2"
+          height="2.5"
+          >
+      
+          <a-gui-label 
+              class="panelText" 
+              value="Patch:"
+              width="2"
+              height="0.75"
+              margin="0 0 0.05 0"
+              font-color="white"
+              line-height="1.0"
+              opacity="0.0"
+              background-color="black"
+            ></a-gui-label>
+
+            </a-gui-label>
+
+            <a-gui-label 
+              class="panelText" 
+              value="Soil Temp: "
+              width="2"
+              height="0.25" 
+              margin="0 0 0.05 0"
+              font-color="white"
+              opacity="0.0"
+              background-color="black"
+            >
+            </a-gui-label>
+
+            <a-gui-label 
+              width="2"
+              height="0.25" 
+              margin="0 0 0.05 0"
+              font-color="white"
+              opacity="0.0"
+              background-color="black"
+            >
+            </a-gui-label>
+
+            <a-gui-label 
+              class="panelText" 
+              value="Soil Moisture: "
+              width="2"
+              height="0.25" 
+              margin="0 0 0.05 0"
+              font-color="white"
+              opacity="0.0"
+              background-color="black"
+            >
+            </a-gui-label>
+
+            <a-gui-label 
+              class="panelText" 
+              value="Soil Moisture: "
+              width="2"
+              height="0.25" 
+              margin="0 0 0.05 0"
+              font-color="white"
+              opacity="0.0"
+              background-color="black"
+            >
+            </a-gui-label>
+
+            <a-gui-label 
+              class="panelText" 
+              value="Light Intensity: "
+              width="2"
+              height="0.25" 
+              margin="0 0 0.05 0"
+              font-color="white"
+              opacity="0.0"
+              background-color="black"
+            >
+            </a-gui-label>           
+          </a-gui-flex-container>
+
+          <a-gui-flex-container
+          class="weatherpanel"
+          visible="false"
+          position="0 0 -3" 
+          flex-direction="column" 
+          justify-content="center" 
+          align-items="normal" 
+          component-padding="0.1"  
+          opacity="0.5"
+          background-color="black"
+          width="2"
+          height="2.5"
+          >
+        
+          </a-gui-flex-container>
+			</a-camera> <!-- /camera -->
+		</a-entity>
+
+    <a-entity position="-6 0.75 3" rotation="0 120 0">
+      <a-image  src="#icon"></a-image>
+      <a-gui-button 
+        currentpatch="patch: 1" 
+        position="0 0 -0.1" 
+        background-color="white" 
+        focus-color="white" 
+        active-color="white" 
+        hover-color="white"
+        ></a-gui-button>
+    </a-entity>
+
+    <a-entity position="-5 0.75 -3" rotation="0 58 0">
+      <a-image  src="#icon"></a-image>
+      <a-gui-button 
+        currentpatch="patch: 2" 
+        position="0 0 -0.1" 
+        background-color="white" 
+        focus-color="white" 
+        active-color="white" 
+        hover-color="white"
+        ></a-gui-button>
+    </a-entity>
+
+    <a-entity position="-2 0.75 -6.5" rotation="0 35 0">
+      <a-image  src="#icon"></a-image>
+      <a-gui-button 
+        currentpatch="patch: 3" 
+        position="0 0 -0.1" 
+        background-color="white" 
+        focus-color="white" 
+        active-color="white" 
+        hover-color="white"
+        ></a-gui-button>
+    </a-entity>
+  
+    <a-entity position="2 0.75 -8" rotation="0 0 0">
+      <a-image  src="#icon"></a-image>
+      <a-gui-button 
+        currentpatch="patch: 4" 
+        position="0 0 -0.1" 
+        background-color="white" 
+        focus-color="white" 
+        active-color="white" 
+        hover-color="white"
+        ></a-gui-button>
+    </a-entity>
+
+    <a-entity position="8 0.75 -3.2" rotation="0 -57 0">
+      <a-image  src="#icon"></a-image>
+      <a-gui-button 
+        currentpatch="patch: 5" 
+        position="0 0 -0.1" 
+        background-color="white" 
+        focus-color="white" 
+        active-color="white" 
+        hover-color="white"
+        ></a-gui-button>
+    </a-entity>
+
+    <a-entity position="9 0.75 4" rotation="0 -122 0">
+      <a-image  src="#icon"></a-image>
+      <a-gui-button 
+        currentpatch="patch: 6" 
+        position="0 0 -0.1" 
+        background-color="white" 
+        focus-color="white" 
+        active-color="white" 
+        hover-color="white"
+        ></a-gui-button>
+    </a-entity>
+
+    <a-entity position="5 0.75 9" rotation="0 -145 0">
+      <a-image  src="#icon"></a-image>
+      <a-gui-button 
+        currentpatch="patch: 7" 
+        position="0 0 -0.1" 
+        background-color="white" 
+        focus-color="white" 
+        active-color="white" 
+        hover-color="white"
+        ></a-gui-button>
+    </a-entity>
+
+    <a-entity position="5 0.75 9" rotation="0 -145 0">
+      <a-image  src="#icon"></a-image>
+      <a-gui-button 
+        currentpatch="patch: 8" 
+        position="0 0 -0.1" 
+        background-color="white" 
+        focus-color="white" 
+        active-color="white" 
+        hover-color="white"
+        ></a-gui-button>
+    </a-entity>
+
+
+    <a-image  
+      src="#water"  
+      position="-4 2 6" 
+      rotation="0 -40 0"
+    ></a-image>
+
+    <a-entity position="6.6 5.0 -8" rotation="40 -30 2">
+      <a-image  src="#weather"></a-image>
+      <a-gui-button 
+        weather="" 
+        position="0 0 -0.1" 
+        background-color="white" 
+        focus-color="white" 
+        active-color="white" 
+        hover-color="white"
+        ></a-gui-button>
+    </a-entity>
+
+    
+      
+      
+		<a-gui-flex-container 
+    flex-direction="column" justify-content="center" align-items="normal" component-padding="0.1" 
+    width="2" 
+    height="0.75"
+    position="-4 0.75 6" 
+    rotation="0 140 0"
+    >
+
+    <a-gui-toggle
+      width="2" height="0.75"
+      waterrunning="false"
+      value="Water On"
+      opacity="0.5"
+      background-color="black"
+      hover-color="cyan"
+      handle-color="cyan"
+      font-color="#fff"
+    >
+    </a-gui-toggle>
+
+    <a-gui-label 
+				width="2" height="0.5"
+				value="Water Flow"
+				margin="0 0 0.05 0"
+				font-color="white"
+        opacity="0.7"
+        background-color="black"
+        class="waterlabel"
+
+			>
+			</a-gui-label>
+
+    </a-gui-flex-container>
+
+    </a-scene>
+  </body>
+</html>

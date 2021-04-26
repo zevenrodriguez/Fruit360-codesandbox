@@ -1,0 +1,51 @@
+<!-- <a-entity visible="false" geometry="primitive: plane; height: 0.75; width: 0.5;" position="0 0 -1" material="color: gray; opacity: 0.8" class="showpanel">
+
+            <a-text class="panelText" value="Patch: " width="1" position="-0.18 0.3 0" ></a-text>
+
+            <a-text class="panelText" value="Soil Temp: " width="1" position="-0.18 0.2 0" ></a-text>
+            
+            <a-text class="panelText" value="Soil Moisture: " width="1" position="-0.18 0.1 0" ></a-text>
+            
+            <a-text class="panelText" value="Light Intensity: " width="1" position="-0.18 -0.1 0" ></a-text>
+            
+            <a-text class="panelText" value="Battery: " width="1" position="-0.18 -0.2 0" ></a-text>
+          
+          </a-entity> -->
+
+
+             var isRunning = false;
+   var count = 0;
+
+   window.waterrunning = function(){
+     if(isRunning == false){
+       isRunning = true;
+     }else{
+       isRunning = false;
+     }
+     if(isRunning){
+      //count++;
+      var waterflow = document.getElementsByClassName("waterlabel"),
+
+      startTime(waterflow);
+     }
+     console.log("waterrunning" + isRunning + count);
+    //   var waterflow = document.getElementsByClassName("waterlabel"),
+
+    //  while(isRunning){
+    //   startTime(waterflow);
+    //  }
+
+     
+     //var waterflow = document.getElementsByClassName("waterlabel"),
+ 		 //
+
+   }
+
+
+   window.startTime = function(display) {
+    setInterval(function () {
+        seconds = parseInt(timer % 60, 10);
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        display.setAttribute('value', seconds);
+    }, 1000);
+  }
